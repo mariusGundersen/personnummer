@@ -2,6 +2,8 @@ function refresh(){
     const date = document.querySelector('#date').value;
     const gender = document.querySelector('#gender').value;    
 
+    if(!date || !gender) return;
+
     const output = document.querySelector('#output');
 
     const numbers = generate(date, gender);
