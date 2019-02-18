@@ -1,0 +1,13 @@
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+body > * {
+    margin: 0 2em;
+}
+
+pre {
+    margin: 0;
+}
