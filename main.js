@@ -53,8 +53,8 @@ function* getRangeNew(year){
 }
 
 function* range(from, to){
-    for(let i=from; i<to; i++){
-        yield i;
+    while(true) {
+        yield Math.floor(Math.random()*(to-from)+from);
     }
 }
 
