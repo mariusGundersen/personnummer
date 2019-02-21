@@ -4,7 +4,9 @@ body {
 
 h1 {
     font-size: 4vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: .25em 0;
+    color: #333;
 }
 
 #wrapper {
