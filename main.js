@@ -1,8 +1,21 @@
+function onload(){
+    const state = JSON.parse(localStorage.getItem('personnummer') || '{}');
+    
+    document.querySelector('#date').value = state.date || '1937-02-21';
+    document.querySelector('#gender').value = state.gender || 'm';
+    refresh();
+}
+
 function refresh(){
     const date = document.querySelector('#date').value;
     const gender = document.querySelector('#gender').value;    
 
     if(!date || !gender) return;
+
+    localStorage.setItem('personnummer', JSON.stringify({
+        date,
+        gender
+    }));
 
     const output = document.querySelector('#output');
 
