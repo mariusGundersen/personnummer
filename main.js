@@ -8,13 +8,14 @@ function refresh(){
 
     const numbers = generate(date, gender);
     output.textContent = '';
-    for(let i=0; i<10; i++){
+    for(let i=0; i<20; i++){
         const value = numbers.next().value;
-        output.textContent += value+'\n';
-        console.log(value);
+        const input = document.createElement('input');
+        input.value = value;
+        input.readOnly = true;
+        output.appendChild(input);
     }
 }
-
 
 function* generate(date, gender){
     const [year, month, day] = date.split('-');

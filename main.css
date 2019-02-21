@@ -1,13 +1,29 @@
 body {
+    margin: 0;
+}
+
+h1 {
+    font-size: 4vw;
+    margin: .25em 0;
+}
+
+#wrapper {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 
-body > * {
+#wrapper > * {
     margin: 0 2em;
 }
 
-pre {
-    margin: 0;
+#output {
+    display: flex;
+    flex-direction: column;
+}
+
+#output input {
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
 }
