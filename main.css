@@ -36,17 +36,33 @@ h1 {
 .save {
     display: flex;
     align-items: stretch;
+    border-bottom: 1px solid #aaa;
+}
+
+.save input {
+    border: 1px solid transparent;
+    background: transparent;
+}
+
+.person:hover .save input,
+.person .save input:focus {
+    border: 1px solid #333;
+    background: white;
+}
+.person:hover button,
+.person input:focus+button,
+.person>*:focus-within button,
+.person button:active {
+    visibility: visible;
+    background: #090;
 }
 
 .save button {
+    visibility: hidden;
     border: none;
     color: white;
     background: #999;
     cursor: pointer;
-}
-
-.person:hover .save button {
-    background: #090;
 }
 
 .person {
@@ -62,6 +78,7 @@ h1 {
 }
 
 .person h3 button {
+    visibility: hidden;
     border: none;
     color: white;
     background: #999;
