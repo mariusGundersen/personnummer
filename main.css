@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 h1 {
@@ -20,12 +21,53 @@ h1 {
     margin: 0 2em;
 }
 
-#output {
+.output {
     display: flex;
     flex-direction: column;
 }
 
-#output input {
+.output input {
     border: none;
     font-family: 'Courier New', Courier, monospace;
+    text-align: right;
+    background: transparent;
+}
+
+.save {
+    display: flex;
+    align-items: stretch;
+}
+
+.save button {
+    border: none;
+    color: white;
+    background: #999;
+    cursor: pointer;
+}
+
+.person:hover .save button {
+    background: #090;
+}
+
+.person {
+    background: #eee;
+}
+
+.person h3 {
+    margin: 0;
+    border-bottom: 1px solid #aaa;
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+}
+
+.person h3 button {
+    border: none;
+    color: white;
+    background: #999;
+    cursor: pointer;
+}
+
+.person:hover h3 button {
+    background: #a00;
 }

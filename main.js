@@ -1,9 +1,11 @@
 function onload(){
-    const state = JSON.parse(localStorage.getItem('personnummer') || '{}');
+    const state = getData('personnummer', {});
     
     document.querySelector('#date').value = state.date || '1937-02-21';
     document.querySelector('#gender').value = state.gender || 'm';
     refresh();
+
+    loadPeople();
 }
 
 function refresh(){
@@ -12,22 +14,70 @@ function refresh(){
 
     if(!date || !gender) return;
 
-    localStorage.setItem('personnummer', JSON.stringify({
-        date,
-        gender
-    }));
+    setData('personnummer', {date, gender});
 
     const output = document.querySelector('#output');
 
+    generateContentIntoOutput(date, gender, output);
+}
+
+function generateContentIntoOutput(date, gender, output) {
     const numbers = generate(date, gender);
     output.textContent = '';
-    for(let i=0; i<20; i++){
+    for (let i = 0; i < 20; i++) {
         const value = numbers.next().value;
         const input = document.createElement('input');
         input.value = value;
         input.readOnly = true;
         output.appendChild(input);
     }
+}
+
+function loadPeople(){
+    const wrapper = document.querySelector('#wrapper');
+    const savedNames = getData('names', []);
+    for(const {date, gender, name} of savedNames){
+        const div = document.createElement('div');
+        div.className = 'person';
+
+        const header = document.createElement('h3');
+        header.textContent = name;
+        div.appendChild(header);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = '-';
+        deleteButton.addEventListener('click', deletePerson(name));
+        header.appendChild(deleteButton);
+
+        const output = document.createElement('div');
+        output.className = 'output';
+        div.appendChild(output);
+
+        wrapper.appendChild(div);
+
+        generateContentIntoOutput(date, gender, output);
+    }
+}
+
+function deletePerson(name){
+    return e => {
+        const savedNames = getData('names', []);
+        setData('names', savedNames.filter(p => p.name != name));
+        document.location.reload();
+    }
+}
+
+function savePerson(){
+    const name = document.querySelector("#name").value;
+    const date = document.querySelector('#date').value;
+    const gender = document.querySelector('#gender').value;  
+
+    if(!date || !gender || !name) return;
+
+    const savedNames = getData('names', []);
+    savedNames.push({name, date, gender});
+    setData('names', savedNames);
+    document.location.reload();
 }
 
 function* generate(date, gender){
@@ -92,4 +142,12 @@ function pad(v, size) {
         v = '0'+v;
     }
     return v;
+}
+
+function getData(key, fallback){
+    return JSON.parse(localStorage.getItem(key) || 'false') || fallback;
+}
+
+function setData(key, value){
+    localStorage.setItem(key, JSON.stringify(value));
 }
