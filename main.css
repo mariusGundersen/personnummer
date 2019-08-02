@@ -42,6 +42,7 @@ h1 {
 .save input {
     border: 1px solid transparent;
     background: transparent;
+    flex: 1;
 }
 
 .person:hover .save input,
@@ -77,7 +78,7 @@ h1 {
     color: #333;
 }
 
-.person h3 button {
+.person button {
     visibility: hidden;
     border: none;
     color: white;
@@ -85,6 +86,22 @@ h1 {
     cursor: pointer;
 }
 
-.person:hover h3 button {
+.spacer {
+    flex: 1;
+}
+
+.person:hover .btn-delete {
     background: #a00;
+}
+.person:hover .btn-more {
+    background: #666;
+}
+
+.entry {
+    display: flex;
+    justify-content: space-between;
+}
+
+.entry input[type=checkbox]:checked+input {
+    text-decoration: line-through;
 }
