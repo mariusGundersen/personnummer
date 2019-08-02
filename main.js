@@ -63,9 +63,11 @@ function loadPeople(savedEntries) {
                     )
                 ),
                 e('div', { className: 'entry' },
-                    e('button', { className: 'btn-more', onclick: loadMore(name, -20) },
-                        '\u21e0'
-                    ),
+                    offset > 0
+                        ? e('button', { className: 'btn-more', onclick: loadMore(name, -20) },
+                            '\u21e0'
+                        ) : null,
+                    e('span', { className: 'spacer' }),
                     e('button', { className: 'btn-more', onclick: loadMore(name, +20) },
                         '\u21e2'
                     )
@@ -239,7 +241,9 @@ function e(type, props, ...children) {
         }
     }
     for (const child of children) {
-        if (typeof (child) == 'string') {
+        if (child === null) {
+            //do nothing
+        } else if (typeof (child) == 'string') {
             elm.appendChild(document.createTextNode(child));
         } else {
             elm.appendChild(child);
