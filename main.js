@@ -59,10 +59,10 @@ function loadPeople(savedEntries) {
                 ),
                 e('div', { className: 'entry' },
                     e('button', { className: 'btn-more', onclick: loadMore(name, -20) },
-                        '\u21d0'
+                        '\u21e0'
                     ),
                     e('button', { className: 'btn-more', onclick: loadMore(name, +20) },
-                        '\u21d2'
+                        '\u21e2'
                     )
                 )
             )

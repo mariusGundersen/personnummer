@@ -94,7 +94,8 @@ h1 {
     background: #a00;
 }
 .person:hover .btn-more {
-    background: #666;
+    background: #999;
+    color: black;
 }
 
 .entry {
@@ -104,4 +105,5 @@ h1 {
 
 .entry input[type=checkbox]:checked+input {
     text-decoration: line-through;
+    color: #999;
 }
