@@ -1,10 +1,15 @@
 function onload() {
     const state = getData('personnummer', {});
-
-    document.querySelector('#date').value = state.date || '1937-02-21';
-    document.querySelector('#gender').value = state.gender || 'm';
-
     const savedEntries = new Set(getData('entries', []));
+
+    const dateElm = document.querySelector('#date');
+    const genderElm = document.querySelector('#gender');
+
+    dateElm.value = state.date || '1937-02-21';
+    genderElm.value = state.gender || 'm';
+
+    dateElm.oninput = e => refresh(savedEntries);
+    genderElm.oninput = e => refresh(savedEntries);
 
     refresh(savedEntries);
 
