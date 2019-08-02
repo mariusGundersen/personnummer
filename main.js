@@ -79,19 +79,31 @@ function loadPeople(savedEntries) {
 
 function entry({ value, checked }) {
     return e('div', { className: 'entry' },
-        e('input', { checked, type: 'checkbox', onchange: markEntry(value) }),
-        e('input', { value, readOnly: true })
+        e('input', { checked, type: 'checkbox', onchange: (e) => markEntry(value, e.target.checked) }),
+        e('input', { value, readOnly: true, oncopy: checkCheckbox(value), onclick: selectAll() })
     );
 }
 
-function markEntry(value) {
+function selectAll() {
     return e => {
-        const savedEntries = getData('entries', []);
-        if (e.target.checked) {
-            setData('entries', [...savedEntries, value]);
-        } else {
-            setData('entries', savedEntries.filter(v => v != value));
-        }
+        e.target.setSelectionRange(0, e.target.value.length);
+    }
+}
+
+function checkCheckbox(value) {
+    return e => {
+        e.target.previousSibling.checked = true;
+        e.target.setSelectionRange(0, 0);
+        markEntry(value, true);
+    }
+}
+
+function markEntry(value, checked) {
+    const savedEntries = getData('entries', []);
+    if (checked) {
+        setData('entries', [...savedEntries, value]);
+    } else {
+        setData('entries', savedEntries.filter(v => v != value));
     }
 }
 
