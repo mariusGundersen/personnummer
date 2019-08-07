@@ -92,9 +92,11 @@ function selectAll() {
 
 function checkCheckbox(value) {
     return e => {
-        e.target.previousSibling.checked = true;
-        e.target.setSelectionRange(0, 0);
-        markEntry(value, true);
+        setTimeout(() => {
+            e.target.previousSibling.checked = true;
+            e.target.setSelectionRange(0, 0);
+            markEntry(value, true);
+        }, 10);
     }
 }
 
